@@ -1,0 +1,38 @@
+<body class="home">
+    <header class="primary-header flex">
+        <div>
+            <a href="/">
+                <img src="assets/images/kick.jpg" alt="image not found" class="logo">
+            </a>
+        </div>
+        <h2>Houston Football Association</h2>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" type="button"
+            {{on 'click' (fn this.visibility)}}>
+            <span class="sr-only">Menu</span>
+        </button>
+        <nav>
+            <ul id="primary-navigation" class="primary-navigation flex" data-visible="false">
+                <li class="active">
+                    <a href="/" class="ff-sans-cond uppercase text-white letter-spacing-2">
+                        <span aria-hidden="true">00</span>Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/scientists" class="ff-sans-cond uppercase text-white letter-spacing-2">
+                        <span aria-hidden="true">01</span>Scientists
+                    </a>
+                </li>
+                <li>
+                    <a href="/programmers" class="ff-sans-cond uppercase text-white letter-spacing-2">
+                        <span aria-hidden="true">02</span>Programmers
+                    </a>
+                </li>
+                <li>
+                    <a href="/scientists" class="ff-sans-cond uppercase text-white letter-spacing-2">
+                        <span aria-hidden="true">01</span>Scientists
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</body>
