@@ -1,0 +1,126 @@
+.ff-sans-cond {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  letter-spacing: 2;
+  text-transform: uppercase;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+img {
+  width: 70px;
+  aspect-ratio: 1;
+}
+h3 {
+  font-weight: 700;
+  box-sizing: inherit;
+  flex-wrap: wrap;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap, 1rem);
+}
+
+// primary header
+.logo {
+  margin: 1rem 3rem 1rem max(-30vh, -20rem);
+}
+
+nav {
+  margin-right: -20rem;
+}
+.primary-header {
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(158, 156, 156);
+  padding: 0 35rem 0 35rem;
+  height: 100%;
+}
+.mobile-nav-toggle {
+  display: none;
+}
+
+// ul
+.primary-navigation {
+  list-style: none;
+  padding: 0;
+  margin-block: 2rem;
+  //background: hsl(0 0% 0% / .75);
+}
+
+.primary-navigation a {
+  text-decoration: none;
+  padding: 2rem;
+  position: relative;
+  margin-left: -2rem;
+}
+
+.primary-navigation a > [aria-hidden="true"] {
+  font-weight: 700;
+  margin-inline-end: 0.75em;
+}
+
+@media (max-width: 88em) {
+  .primary-navigation {
+    //TODO: make bottom border lines btwn li's
+    z-index: 1000;
+    position: fixed;
+    inset: -10% 0 -10% 10%;
+    flex-direction: column;
+    transform: translateX(110%);
+    background: black;
+    transition: transform 250ms ease-out;
+  }
+  h3 {
+    flex-wrap: wrap;
+  }
+
+  .primary-navigation[data-visible="true"] {
+    transform: translateX(10%);
+    --gap: 2rem;
+    padding-right: 20rem;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    z-index: 9999;
+    position: absolute;
+    background-image: url(../components/images/icon-hamburger.png);
+    background-repeat: no-repeat;
+    width: 2rem;
+    aspect-ratio: 1;
+    top: 2rem;
+    right: 2rem;
+    border: 0;
+    border-bottom: solid;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url(assets/images/kick.jpg);
+  }
+}
+
+// turn numbers off when medium size window
+@media (min-width: 35em) and (max-width: 55em) {
+  h3 {
+    display: none;
+  }
+}
+
+@media (min-width: 15em) {
+  .primary-navigation {
+    padding-block: 2rem;
+    margin-right: 2rem;
+    padding-inline: clamp(3rem, 5vw, 10rem);
+  }
+}
