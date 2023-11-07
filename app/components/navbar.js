@@ -3,7 +3,8 @@ import { action } from '@ember/object';
 
 export default class NavbarComponent extends Component {
   @action
-  visibility(isVisible, primaryNav, navToggle) {   // need to declare variables here instead of using const
+  visibility(isVisible, primaryNav, navToggle) {
+    // need to declare variables here instead of using const
 
     // assign ul menu to primaryNav and use its data-visible property
     navToggle = document.querySelector('.mobile-nav-toggle');
