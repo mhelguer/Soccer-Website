@@ -1,4 +1,4 @@
-<body class="home">
+<div class="home">
     <header class="primary-header flex">
         <div>
             <a href="/">
@@ -7,7 +7,7 @@
         </div>
         <h3>Houston Football Association</h3>
         <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" type="button"
-            {{on 'click' (fn this.visibility)}}>
+            {{on 'click' this.visibility}}>
             <span class="sr-only">Menu</span>
         </button>
         <nav>
@@ -36,4 +36,4 @@
         </nav>
 
     </header>
-</body>
+</div>
