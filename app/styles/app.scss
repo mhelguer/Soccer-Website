@@ -1,0 +1,29 @@
+@import "ember-bootstrap/bootstrap";
+@import "navbar";
+@import "index";
+@import "foot";
+@import "people-list";
+
+body {
+  // background-color: rgb(230, 230, 230);
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(153, 152, 152);
+}
+
+.nav {
+  position: inline-block;
+}
+
+.foot {
+  margin-top: auto;
+  text-align: center;
+  justify-content: center;
+  font-size: 18px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+@import "ember-power-select";
