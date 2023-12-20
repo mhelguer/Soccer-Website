@@ -2,7 +2,8 @@
 {{page-title "Teams"}}
 
 
-<PeopleList
+<TeamsTable
     @title="TFA Fall 2023 - Championship"
-    @teams={{@model}} 
+    @data={{this.data}} 
+    @changeData={{on "changeData"}}
 />

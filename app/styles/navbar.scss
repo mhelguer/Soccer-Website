@@ -157,6 +157,8 @@ a:hover {
   }
   .logo {
     margin-left: 5rem;
+    display: flex;
+    position: absolute;
   }
 
   .primary-navigation[data-visible="true"] {
