@@ -1,24 +1,7 @@
 <div class="title-menu">
   <h2>{{@title}}</h2>
-  {{log this.data}}
-  {{#if this.data}}
-    hi
-    {{this.data.data}}
-  {{else}}
-    bye
-  {{/if}}
-  {{#if this.data}}
-  hi2
-  {{log this.data}}
-    <ul>
-      {{#each this.data as |dat|}}
-      <li>{{dat.name}}</li>
-      {{/each}}
-    </ul>
-  {{else}}
-    bye2
-  {{/if}}
 </div>
+
 <table>
   <thead>
     <tr>
@@ -46,11 +29,3 @@
 </table>
 
 <button {{action 'changeData' }}>Change Data</button>
-{{!-- <button type="button" {{action "changeDivision" }}>Click Me</button>
-<div>
-  {{#if this.data}}
-    <p>{{this.data.name}}</p>
-  {{else}}
-    <p>Loading...</p>
-  {{/if}}
-</div> --}}

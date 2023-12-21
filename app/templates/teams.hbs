@@ -1,9 +1,10 @@
-{{!-- localhost:4200/scientists --}}
+{{!-- localhost:4200/teams --}}
 {{page-title "Teams"}}
 
 
 <TeamsTable
     @title="TFA Fall 2023 - Championship"
-    @data={{this.data}} 
+    @data={{@model}} 
     @changeData={{on "changeData"}}
 />
+
