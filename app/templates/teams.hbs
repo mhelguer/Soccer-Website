@@ -1,10 +1,9 @@
 {{!-- localhost:4200/teams --}}
-{{page-title "Teams"}}
 
+{{page-title "Standings"}}
+<div class="body">
+    <div class="hero">
+        <TeamsTable @title="TFA Fall 2023 - Championship" @data={{@model}} @changeData={{on "changeData" }} />
+    </div>
 
-<TeamsTable
-    @title="TFA Fall 2023 - Championship"
-    @data={{@model}} 
-    @changeData={{on "changeData"}}
-/>
-
+</div>
