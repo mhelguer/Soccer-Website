@@ -1,15 +1,47 @@
-
-.hero {
-  width: 80%;
-  height: 100vh;
-  background-color: blue;
+.standings {
+  padding: 2rem;
 }
 
 .header {
   display: flex;
-  width: inherit;
+  width: 100%;
 }
 
-.title {
+.table-title {
   width: 50%;
+  // left:0;
+  margin-left: 0;
+}
+
+.division-buttons {
+  width: 50%;
+}
+
+.teams-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+th,
+td {
+  white-space: normal;
+  padding: 10px;
+  overflow: hidden;
+}
+.teams-table tr {
+  border-bottom: 2px solid gray;
+}
+
+.teams-table th {
+  font-weight: 400;
+}
+
+.teams-table td {
+}
+.teams-table-head {
+  display: table-header-group;
+  vertical-align: middle;
+  font-weight: normal;
 }

@@ -1,34 +1,38 @@
-<div class="header">
-  <div class="title">
-    <h2>{{@title}}</h2>
-  </div>
-  <div class="division-buttons">
-    <button {{action 'changeData' }}>Change Data</button>
+<div class="main">
+  <div class="standings">
+    <div class="header">
+      <div class="table-title">
+        <h2>{{@title}}</h2>
+      </div>
+      <div class="division-buttons">
+        <button {{action 'changeData' }}>Change Data</button>
+      </div>
+    </div>
+
+    <table class="teams-table">
+      <thead class="teams-table-head">
+        <tr>
+          {{#each this.headers as |header|}}
+            <th>{{header}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.data.data as |team|}}
+          <tr>
+            <td>{{team.rank}}</td>
+            <td>{{team.name}}</td>
+            <td>{{team.games_played}}</td>
+            <td>{{team.wins}}</td>
+            <td>{{team.draws}}</td>
+            <td>{{team.losses}}</td>
+            <td>{{team.goals_scored}}</td>
+            <td>{{team.goals_conceded}}</td>
+            <td>{{team.goal_differential}}</td>
+            <td>{{team.points}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      {{#each this.headers as |header|}}
-        <th>{{header}}</th>
-      {{/each}}
-    </tr>
-  </thead>
-  <tbody>
-    {{#each this.data.data as |team|}}
-      <tr>
-        <td>{{team.rank}}</td>
-        <td>{{team.name}}</td>
-        <td>{{team.games_played}}</td>
-        <td>{{team.wins}}</td>
-        <td>{{team.draws}}</td>
-        <td>{{team.losses}}</td>
-        <td>{{team.goals_scored}}</td>
-        <td>{{team.goals_conceded}}</td>
-        <td>{{team.goal_differential}}</td>
-        <td>{{team.points}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
