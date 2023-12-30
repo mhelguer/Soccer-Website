@@ -9,7 +9,6 @@
 
 .table-title {
   width: 50%;
-  // left:0;
   margin-left: 0;
 }
 
@@ -23,25 +22,42 @@
   overflow-x: auto;
   table-layout: fixed;
   border-spacing: 0;
+  margin: 0;
+  font-size: 18px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-th,
+
+.teams-table th,
 td {
   white-space: normal;
-  padding: 10px;
+  padding: 20px 10px;
   overflow: hidden;
 }
 .teams-table tr {
-  border-bottom: 2px solid gray;
+  border: 2px solid gray;
 }
 
-.teams-table th {
-  font-weight: 400;
+// table header
+.teams-table-head th:not(:nth-child(2)) {
+  width: 30px;
 }
 
-.teams-table td {
+.teams-table-head tr th:nth-child(2) {
+  text-align: left !important;
+  width: 140px;
 }
+
 .teams-table-head {
   display: table-header-group;
   vertical-align: middle;
-  font-weight: normal;
+  //font-weight: 400;
+  // FIXME: th's staying bold
+  font-weight: normal !important;
+  font-style: none;
+}
+
+// table body
+.teams-table-body {
+  font-weight: bold;
+  color: blue;
 }
