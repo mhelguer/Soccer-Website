@@ -8,22 +8,21 @@ export default class TeamsTableComponent extends Component {
 
   @tracked data = this.data;
 
-  
-  constructor(){
+  constructor() {
     super(...arguments);
     this.data = this.args.data;
   }
 
   @action
-  changeData(division){
+  changeData(division) {
     console.log(division);
     fetch(`http://localhost:3000/api/data/teams/${division}`)
-    .then(response=>response.json())
-    .then(newData =>{
-      this.data=newData;
-    })
-    .catch(error=>{
-      console.error('error fetching in component:', error);
-    });
+      .then((response) => response.json())
+      .then((newData) => {
+        this.data = newData;
+      })
+      .catch((error) => {
+        console.error('error fetching in component:', error);
+      });
   }
 }
