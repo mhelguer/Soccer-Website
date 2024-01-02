@@ -10,7 +10,7 @@
 }
 
 img {
-  width: 70px;
+  width: 150px;
   aspect-ratio: 1;
 }
 h3 {
@@ -29,36 +29,36 @@ h3 {
 
 // primary header
 .primary-header {
-  display: table;
-  //flex-direction: row;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   //justify-content: space-between;
   background: rgb(158, 156, 156);
   width: 100%;
-  height: 150px;
+  height: 170px;
   margin: 0 auto;
 }
 
 .logo {
   
-  left: 0;
+  margin-left: 12rem;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: row;
   width: 50%;
   height: inherit;
   align-items: center;
   left: 4rem;
-  position: fixed;
+  position: relative;
   z-index: 400;
 }
 .title {
-  //width: 250%;
-  margin-left: 3em;
+  margin-left: 2rem;
+  justify-content: center;
+  padding-left: 2rem;
   
 }
 
@@ -68,7 +68,8 @@ h3 {
   float: right;
   height:inherit;
   justify-content: flex-end;
-  align-items: center;
+  align-items: right;
+  white-space: nowrap;
 }
 
 
@@ -85,10 +86,14 @@ h3 {
   height: inherit;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  // justify-content: right;
   align-items: center;
   list-style: none;
-  padding: 2rem;
+  padding: 2rem 0 2rem 14rem;
+  margin-right: 10%;
+  position: relative;
+  white-space: nowrap;
+
 
   // li styling
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -200,12 +205,22 @@ a:hover {
   .primary-navigation {
     padding-block: 2rem;
   }
+  .right-nav{
+    width: 200px;
+  }
   .logo {
-    margin-left: 5rem;
+    margin-left: 2rem;
   }
   .brand{
     left: 0;
-    width: 400px;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+
+  }
+  .title{
+    padding-left: 4rem;
+    margin-left: 10rem !important;
   }
  
 }

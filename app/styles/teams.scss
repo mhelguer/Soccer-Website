@@ -1,0 +1,96 @@
+.standings {
+  padding: 2rem;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////
+ header
+*/
+.header {
+  display: inline-flex;
+  width: 84%;
+}
+
+.table-title {
+  width: 80%;
+  margin-left: 0;
+}
+
+.dropdown {
+  width: 20%;
+  display: flex;
+}
+
+#dropdownMenu {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+/*/////////////////////////////////////////////////////////////////////////////////
+ table 
+*/
+.teams-table {
+  width: 84%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  table-layout: fixed;
+  border-spacing: 0;
+  margin: 0;
+  font-size: 20px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.teams-table th,
+td {
+  white-space: normal;
+  padding: 20px 10px;
+  overflow: hidden;
+}
+.teams-table tr {
+  border: 2px solid gray;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////
+ table head row
+*/
+.teams-table-head th:not(:nth-child(2)) {
+  text-align: center !important;
+  width: 14px;
+}
+
+.teams-table-head tr th:nth-child(2) {
+  text-align: left !important;
+  width: 130px;
+}
+
+.teams-table-head tr th:nth-child(10) {
+  text-align: center !important;
+}
+
+.teams-table-head {
+  display: table-header-group;
+  vertical-align: middle;
+  font-style: none;
+}
+
+.teams-table-head th {
+  font-weight: normal !important;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////
+ table body
+*/
+.teams-table-body {
+  font-weight: bold;
+  background-color: rgb(216, 229, 23);
+}
+
+.teams-table-body tr td:not(:nth-child(2)) {
+  text-align: center !important;
+  width: 14px;
+}
+
+.teams-table-body tr td:nth-child(10) {
+  text-align: center !important;
+  background-color: rgb(193, 205, 20);
+}

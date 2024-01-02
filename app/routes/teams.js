@@ -6,13 +6,10 @@ import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
 export default class TeamsRoute extends Route {
-
   async model() {
     const response = await fetch('http://localhost:3000/api/data/teams/1');
     const resp = await response.json();
     this.data = resp;
-    console.log('model this.data.data: ',this.data.data);  //[{...}, {...}, {...}, {...}] div 1
-
     return this.data;
   }
 }
