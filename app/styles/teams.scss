@@ -7,7 +7,7 @@
 */
 .header {
   display: inline-flex;
-  width: 84%;
+  width: 100%;
 }
 
 .table-title {
@@ -30,7 +30,7 @@
  table 
 */
 .teams-table {
-  width: 84%;
+  width: 100%;
   border-collapse: collapse;
   overflow-x: auto;
   table-layout: fixed;

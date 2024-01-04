@@ -22,7 +22,28 @@ connection.connect((err) => {
 
 // API endpoint to fetch data from MySQL
 app.get('/api/data/teams/1', (req, res) => {
-  const query = `SELECT t.rank, t.name, t.games_played, t.wins, t.draws, t.losses, t.goals_scored, t.goals_conceded, t.goal_differential, t.points FROM (SELECT ROW_NUMBER() OVER (PARTITION BY division =1 ORDER BY team_id DESC) AS 'rank', name, games_played, wins, draws, losses, goals_scored, goals_conceded, goal_differential, points, division FROM teams) t WHERE t.division = 1;`;
+  const query = `
+    SELECT 
+      t.rank, 
+      t.name, 
+      t.games_played, 
+      t.wins, 
+      t.draws, 
+      t.losses, 
+      t.goals_scored, 
+      t.goals_conceded, 
+      t.goal_differential, 
+      t.points 
+    FROM (
+      SELECT 
+        ROW_NUMBER() OVER (
+          PARTITION BY division =1 
+          ORDER BY points DESC, goal_differential DESC
+        ) 
+      AS 'rank', name, games_played, wins, draws, losses, goals_scored, goals_conceded, goal_differential, points, division 
+        FROM teams
+    ) t 
+    WHERE t.division = 1;`;
   connection.query(query, (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
@@ -54,7 +75,27 @@ app.get('/api/data/teams/1', (req, res) => {
 
 // division 2
 app.get('/api/data/teams/2', (req, res) => {
-  const query = `SELECT t.rank, t.name, t.games_played, t.wins, t.draws, t.losses, t.goals_scored, t.goals_conceded, t.goal_differential, t.points FROM (SELECT ROW_NUMBER() OVER (PARTITION BY division =1 ORDER BY team_id DESC) AS 'rank', name, games_played, wins, draws, losses, goals_scored, goals_conceded, goal_differential, points, division FROM teams) t WHERE t.division = 2;`;
+  const query = `
+    SELECT 
+      t.rank, 
+      t.name, 
+      t.games_played, 
+      t.wins, t.draws, 
+      t.losses, 
+      t.goals_scored, 
+      t.goals_conceded, 
+      t.goal_differential, 
+      t.points 
+    FROM (
+      SELECT 
+        ROW_NUMBER() OVER (
+          PARTITION BY division =2 
+          ORDER BY points DESC, goal_differential DESC
+        ) 
+      AS 'rank', name, games_played, wins, draws, losses, goals_scored, goals_conceded, goal_differential, points, division 
+      FROM teams
+    ) t 
+    WHERE t.division = 2;`;
   connection.query(query, (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
