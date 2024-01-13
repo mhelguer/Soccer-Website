@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
 export default class TeamsTableComponent extends Component {
-  @tracked headers = ['#', 'Team', 'GP', 'W', 'D', 'L', 'F', 'A', 'GD', 'P'];
+  @tracked headers = ['Time', 'Home', 'Result', 'Visitor', 'Field'];
 
   @tracked data = this.data;
 
@@ -14,9 +14,9 @@ export default class TeamsTableComponent extends Component {
   }
 
   @action
-  changeData(division) {
-    console.log(division);
-    fetch(`http://localhost:3000/api/data/teams/${division}`)
+  changeScheduleData(division) {
+    console.log(division, 'changeScheduleData');
+    fetch(`http://localhost:3000/api/data/schedule/${division}`)
       .then((response) => response.json())
       .then((newData) => {
         this.data = newData;
@@ -24,5 +24,6 @@ export default class TeamsTableComponent extends Component {
       .catch((error) => {
         console.error('error fetching in component:', error);
       });
+      console.log(this.data)
   }
 }

@@ -5,7 +5,7 @@
         <h2>{{@title}}</h2>
       </div>
       <div class="dropdown">
-        <select id="dropdownMenu" onchange={{action 'changeData' value="target.value" }}>
+        <select id="dropdownMenu" onchange={{action 'changeScheduleData' value="target.value" }}>
           <option value="1">Division 1</option>
           <option value="2">Division 2</option>
         </select>
@@ -15,24 +15,29 @@
     <table class="teams-table">
       <thead class="teams-table-head">
         <tr>
+          {{!-- TODO: put day_name, month_name day_number as header row for each weekend --}}
+        </tr>
+      </thead>
+      <thead class="teams-table-head">
+        <tr>
           {{#each this.headers as |header|}}
             <th>{{header}}</th>
           {{/each}}
         </tr>
       </thead>
+
       <tbody class="teams-table-body">
-        {{#each this.data.data as |team|}}
+        {{#each this.data.data as |matchday|}}
           <tr>
-            <td>{{team.rank}}</td>
-            <td>{{team.name}}</td>
-            <td>{{team.games_played}}</td>
-            <td>{{team.wins}}</td>
-            <td>{{team.draws}}</td>
-            <td>{{team.losses}}</td>
-            <td>{{team.goals_scored}}</td>
-            <td>{{team.goals_conceded}}</td>
-            <td>{{team.goal_differential}}</td>
-            <td>{{team.points}}</td>
+            {{!-- <td>{{matchday.day_name}}</td>
+            <td>{{matchday.month_name}}</td>
+            <td>{{matchday.day_number}}</td> --}}
+            <td>{{matchday.time}}</td>
+            <td>{{matchday.home_team}}</td>
+            <td>{{matchday.home_team_goals}} - {{matchday.visiting_team_goals}}</td>
+            
+            <td>{{matchday.visiting_team}}</td>
+            <td>{{matchday.field}}</td>
           </tr>
         {{/each}}
       </tbody>

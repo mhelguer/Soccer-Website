@@ -15,7 +15,6 @@ export default class TeamsTableComponent extends Component {
 
   @action
   changeData(division) {
-    console.log(division);
     fetch(`http://localhost:3000/api/data/teams/${division}`)
       .then((response) => response.json())
       .then((newData) => {
