@@ -69,7 +69,7 @@ app.get('/api/data/teams/1', (req, res) => {
       }));
 
       dat = res.json({ data: resourceCollection });
-      console.log(dat)
+      console.log(dat);
     }
   });
 });
@@ -124,13 +124,11 @@ app.get('/api/data/teams/2', (req, res) => {
   });
 });
 
-
-
-
 // schedule div 1
 app.get('/api/data/schedule/1', (req, res) => {
   const query = `
     SELECT 
+    date,
     DAYNAME(date) as day_name, 
     monthname(date) as month_name, 
     day(date) as day_number,
@@ -143,17 +141,17 @@ app.get('/api/data/schedule/1', (req, res) => {
     FROM schedule 
     WHERE division=1 
     ORDER BY date`;
-  
+
   connection.query(query, (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', err);
       res.status(500).json({ error: 'Internal Server Error' });
-      return
+      return;
     } else {
       //console.log(result);
       const resourceCollection = result.map((schedule) => ({
         type: 'schedule',
-        
+        date: schedule.date,
         day_name: schedule.day_name,
         month_name: schedule.month_name,
         day_number: schedule.day_number,
@@ -162,15 +160,14 @@ app.get('/api/data/schedule/1', (req, res) => {
         visiting_team: schedule.visiting_team,
         field: schedule.field,
         home_team_goals: schedule.home_team_goals,
-        visiting_team_goals: schedule.visiting_team_goals
+        visiting_team_goals: schedule.visiting_team_goals,
       }));
 
       dat = res.json({ data: resourceCollection });
-      console.log(resourceCollection)
+      console.log(resourceCollection);
     }
   });
 });
-
 
 app.listen(port, () => {
   console.log(`API server listening at http://localhost:${port}`);

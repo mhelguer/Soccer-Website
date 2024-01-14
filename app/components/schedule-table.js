@@ -4,13 +4,29 @@ import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
 export default class TeamsTableComponent extends Component {
-  @tracked headers = ['Time', 'Home', 'Result', 'Visitor', 'Field'];
+  headers = ['Time', 'Home', 'Result', 'Visitor', 'Field'];
 
   @tracked data = this.data;
 
   constructor() {
     super(...arguments);
     this.data = this.args.data;
+
+    // get all unique dates to have a date header for each gameday container
+    let matches = this.data.data;
+    this.unique_dates = [];
+    this.date_headers = [];
+    for (const index in matches) {
+      let gameday = matches[index];
+      if (!this.unique_dates.includes(matches[index].date)) {
+        this.unique_dates.push(matches[index].date);
+        this.date_headers.push(`${gameday.day_name}, ${gameday.month_name} ${gameday.day_number}`);
+        }
+    }
+    console.log(matches);
+
+    // TODO: separate this.data.data into gameday objects with corresponding matches(6 gameday objects with 2 match objects each)
+
   }
 
   @action
@@ -24,6 +40,5 @@ export default class TeamsTableComponent extends Component {
       .catch((error) => {
         console.error('error fetching in component:', error);
       });
-      console.log(this.data)
   }
 }

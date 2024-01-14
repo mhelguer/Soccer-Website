@@ -10,7 +10,7 @@ export default class ScheduleRoute extends Route {
     const response = await fetch('http://localhost:3000/api/data/schedule/1');
     const resp = await response.json();
     this.data = resp;
-    console.log('model', this.data)
+    console.log('model', this.data);
     return this.data;
   }
 }

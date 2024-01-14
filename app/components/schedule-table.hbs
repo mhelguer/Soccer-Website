@@ -11,13 +11,19 @@
         </select>
       </div>
     </div>
-
-    <table class="teams-table">
+    {{#each this.date_headers as |date_header|}}
+      <table class="teams-table" id="date-header">
       <thead class="teams-table-head">
         <tr>
-          {{!-- TODO: put day_name, month_name day_number as header row for each weekend --}}
+          {{date_header}}
         </tr>
       </thead>
+    </table>
+    {{/each}}
+
+    
+
+    <table class="teams-table">
       <thead class="teams-table-head">
         <tr>
           {{#each this.headers as |header|}}
@@ -35,7 +41,7 @@
             <td>{{matchday.time}}</td>
             <td>{{matchday.home_team}}</td>
             <td>{{matchday.home_team_goals}} - {{matchday.visiting_team_goals}}</td>
-            
+
             <td>{{matchday.visiting_team}}</td>
             <td>{{matchday.field}}</td>
           </tr>
