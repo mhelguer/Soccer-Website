@@ -12,15 +12,19 @@
       </div>
     </div>
 
-    {{#if this.data}}
-      {{this.data}}
-    {{else}}
-      <h1>bye</h1>
-    {{/if}}
-    {{#each this.schedule.all_gamedays as |index|}}
-      {{log index}}
-    {{/each}}
+    {{#if @schedule}}
+      {{#each-in @schedule as |key gameday|}}
+        <h2>{{gameday.0.day_name}}, {{gameday.0.month_name}} {{gameday.0.day_number}}</h2>
+        {{#each-in gameday as |key2 game|}}
+          {{game.time}} {{game.home_team}} {{game.home_team_goals}}-{{game.visiting_team_goals}} {{game.visiting_team}} {{game.field}}
+          <br>
+        {{/each-in}}
+        <br>
 
+      {{/each-in}}
+    {{else}}
+      could not retrieve schedule
+    {{/if}}
 
     {{#each this.date_headers as |date_header|}}
       <table class="teams-table" id="date-header">
