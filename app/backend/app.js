@@ -3,15 +3,12 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const config = require('./config');
 
 app.use(cors());
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'mysqlsun1',
-  database: 'soccer_league',
-});
+const connection = mysql.createConnection(config.mysql);
+
 
 connection.connect((err) => {
   if (err) console.error('error connecting to mysql database', err);

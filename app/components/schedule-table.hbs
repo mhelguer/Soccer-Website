@@ -11,17 +11,28 @@
         </select>
       </div>
     </div>
-    {{#each this.date_headers as |date_header|}}
-      <table class="teams-table" id="date-header">
-      <thead class="teams-table-head">
-        <tr>
-          {{date_header}}
-        </tr>
-      </thead>
-    </table>
+
+    {{#if this.data}}
+      {{this.data}}
+    {{else}}
+      <h1>bye</h1>
+    {{/if}}
+    {{#each this.schedule.all_gamedays as |index|}}
+      {{log index}}
     {{/each}}
 
-    
+
+    {{#each this.date_headers as |date_header|}}
+      <table class="teams-table" id="date-header">
+        <thead class="teams-table-head">
+          <tr>
+            {{date_header}}
+          </tr>
+        </thead>
+      </table>
+    {{/each}}
+
+
 
     <table class="teams-table">
       <thead class="teams-table-head">
