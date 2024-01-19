@@ -2,8 +2,4 @@
 
 {{page-title "Schedule"}}
 
-{{log @model}}
-
-{{!-- @model is object with formatted schedule, figure out how to display in schedule-table.hbs --}}
-
-<ScheduleTable @title="TFA Spring 2024 Schedule" @schedule={{@model}} @changeData={{on "changeData" }}/>
+<ScheduleTable @title="TFA Spring 2024 Schedule" @data={{@model}} />

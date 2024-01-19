@@ -12,19 +12,13 @@ export default class ScheduleRoute extends Route {
     this.data = resp;
 
     let matches = this.data.data;
-    this.unique_dates = [];
-    this.date_headers = [];
-    this.all_gamedays = {};
+    this.data = this.organize_schedule(matches);
+    return this.data;
+  }
 
-    for (const index in matches) {
-      let gameday = matches[index];
-      if (!this.unique_dates.includes(matches[index].date)) {
-        this.unique_dates.push(matches[index].date);
-        this.date_headers.push(
-          `${gameday.day_name}, ${gameday.month_name} ${gameday.day_number}`,
-        );
-      }
-    }
+  organize_schedule(matches) {
+    this.unique_dates = [];
+    this.all_gamedays = {};
 
     // separate this.data.data into gameday objects with corresponding matches(6 gameday objects with 2 match objects each)
     let gameday = {};
@@ -34,6 +28,10 @@ export default class ScheduleRoute extends Route {
     let current_date = '';
 
     for (const match_key in matches) {
+      if (!this.unique_dates.includes(matches[match_key].date)) {
+        this.unique_dates.push(matches[match_key].date);
+      }
+
       current_match = matches[match_key];
       current_date = current_match.date;
 
@@ -53,9 +51,7 @@ export default class ScheduleRoute extends Route {
         }
       }
     }
-    for(let gameday in this.all_gamedays){
-      console.log(this.all_gamedays[gameday]);
-    }
+    console.log('schedule.js this.all_gamedays:', this.all_gamedays);
     return this.all_gamedays;
   }
 }

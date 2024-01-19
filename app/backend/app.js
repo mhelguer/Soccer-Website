@@ -41,6 +41,7 @@ app.get('/api/data/teams/1', (req, res) => {
         FROM teams
     ) t 
     WHERE t.division = 1;`;
+
   connection.query(query, (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
@@ -94,6 +95,7 @@ app.get('/api/data/teams/2', (req, res) => {
       FROM teams
     ) t 
     WHERE t.division = 2;`;
+
   connection.query(query, (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
@@ -160,12 +162,57 @@ app.get('/api/data/schedule/1', (req, res) => {
         visiting_team_goals: schedule.visiting_team_goals,
       }));
 
-      dat = res.json({ data: resourceCollection });
+      res.json({ data: resourceCollection });
       console.log(resourceCollection);
     }
   });
 });
 
+// schedule div 2
+app.get('/api/data/schedule/2', (req, res) => {
+  console.log('get div2')
+  const query = `
+    SELECT 
+    date,
+    DAYNAME(date) as day_name, 
+    monthname(date) as month_name, 
+    day(date) as day_number,
+    DATE_FORMAT(time, '%H:%i') AS time,
+    home_team,
+    visiting_team,
+    field,
+    home_team_goals,
+    visiting_team_goals
+    FROM schedule 
+    WHERE division=2 
+    ORDER BY date`;
+
+  connection.query(query, (error, result) => {
+    if (error) {
+      console.error('Error executing MySQL query:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    } else {
+      console.log(result);
+      const resourceCollection = result.map((schedule) => ({
+        type: 'schedule',
+        date: schedule.date,
+        day_name: schedule.day_name,
+        month_name: schedule.month_name,
+        day_number: schedule.day_number,
+        time: schedule.time,
+        home_team: schedule.home_team,
+        visiting_team: schedule.visiting_team,
+        field: schedule.field,
+        home_team_goals: schedule.home_team_goals,
+        visiting_team_goals: schedule.visiting_team_goals,
+      }));
+
+      res.json({ data: resourceCollection });
+      console.log(resourceCollection);
+    }
+  });
+});
 app.listen(port, () => {
   console.log(`API server listening at http://localhost:${port}`);
 });
