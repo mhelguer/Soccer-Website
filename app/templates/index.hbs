@@ -15,16 +15,19 @@
                 </div>
             </div>
         </div>
+
+        {{!-- Login forms --}}
         <div class="form-container" data-visible="false">
             <div class="form-popup" >
-                <form class="input-fields" action="/login.hbs">
+                <form class="input-fields" {{on 'submit' this.submitUserInput}}>
                     <h2>Login</h2>
+                    
 
                     <label for="username"></label>
                     <input type="text" placeholder="Enter Username" id="username" name="username" required>
 
                     <label for="psw"></label>
-                    <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
+                    <input type="password" placeholder="Enter Password" id="psw" name="password" required>
 
                     <button type="submit" class="btn login">Login</button>
                     <button type="button" class="btn cancel" {{on 'click' this.visibilityLogin}}>Close</button>
