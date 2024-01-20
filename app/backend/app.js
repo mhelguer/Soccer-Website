@@ -9,7 +9,6 @@ app.use(cors());
 
 const connection = mysql.createConnection(config.mysql);
 
-
 connection.connect((err) => {
   if (err) console.error('error connecting to mysql database', err);
   else {
@@ -170,7 +169,6 @@ app.get('/api/data/schedule/1', (req, res) => {
 
 // schedule div 2
 app.get('/api/data/schedule/2', (req, res) => {
-  console.log('get div2')
   const query = `
     SELECT 
     date,
@@ -213,6 +211,12 @@ app.get('/api/data/schedule/2', (req, res) => {
     }
   });
 });
+
+// TODO: make endpoint that checks if username and password from controllers/index.js
+//       are valid for a player account
+
+
+
 app.listen(port, () => {
   console.log(`API server listening at http://localhost:${port}`);
 });

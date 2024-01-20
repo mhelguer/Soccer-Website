@@ -23,7 +23,6 @@ export default class TeamsTableComponent extends Component {
       .then((newData) => {
         let matches = newData.data;
 
-
         // same code as organize_schedule() in routes/schedule.js
         let unique_dates = [];
         let all_gamedays = {};
@@ -60,7 +59,7 @@ export default class TeamsTableComponent extends Component {
           }
         }
         // assign organized schedule to this.data to change data on schedule page
-        this.data=all_gamedays;
+        this.data = all_gamedays;
       })
       .catch((error) => {
         console.error('error fetching in component:', error);
