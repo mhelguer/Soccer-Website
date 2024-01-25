@@ -214,8 +214,28 @@ app.get('/api/data/schedule/2', (req, res) => {
 
 // TODO: make endpoint that checks if username and password from controllers/index.js
 //       are valid for a player account
+app.get('/api/data/login', (req, res) => {
+  const {username, password} = req.query;
+  console.log(username, password);
+  const query = `
+  SELECT EXISTS(
+    SELECT 1
+    FROM players
+    WHERE username = '${username}' AND password = '${password}'
+  ) AS user_exists;
+  `;
 
-
+  connection.query(query, [username, password], (error, result) => {
+    if (error) {
+      console.error('Error executing MySQL query:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    } else {
+      console.log(result);
+      res.json(result);
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`API server listening at http://localhost:${port}`);
