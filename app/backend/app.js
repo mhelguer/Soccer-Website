@@ -5,7 +5,9 @@ const app = express();
 const port = 3000;
 const config = require('./config');
 
+//app.use(cors());
 app.use(cors());
+app.use(express.json());
 
 const connection = mysql.createConnection(config.mysql);
 
@@ -212,11 +214,10 @@ app.get('/api/data/schedule/2', (req, res) => {
   });
 });
 
-// TODO: make endpoint that checks if username and password from controllers/index.js
-//       are valid for a player account
-app.get('/api/data/login', (req, res) => {
-  const {username, password} = req.query;
-  console.log(username, password);
+
+app.post('/api/data/login', (req, res) => {
+  const {username, password} = req.body;
+  console.log('received login request: ', req.body);
   const query = `
   SELECT EXISTS(
     SELECT 1
@@ -224,7 +225,7 @@ app.get('/api/data/login', (req, res) => {
     WHERE username = '${username}' AND password = '${password}'
   ) AS user_exists;
   `;
-
+  console.log('query: ',query)
   connection.query(query, [username, password], (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);

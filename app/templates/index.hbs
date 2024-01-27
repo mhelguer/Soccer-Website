@@ -1,39 +1,48 @@
 <div class="main">
-    <div class="dark-bg"></div>
 
     <div class="main-container">
-        <div class="container">
-            <div class="container-top">
-                <p>Before manage roster you need to be logged in.</p>
-            </div>
-            <div class="container-bottom">
-                <div class="login-button">
-                    <button class="btn" id="login-button" type="button" {{on 'click' this.visibilityLogin}}>Log In</button>
+        {{#if this.auth.isLoggedIn}}
+            <p>Welcome, user!</p>
+            {{!-- TODO: make logout function to bring back original homepage layout --}}
+            <button>Logout</button>
+        {{else}}
+            <div class="dark-bg"></div>
+
+            <div class="container">
+                <div class="container-top">
+                    <p>Before manage roster you need to be logged in.</p>
                 </div>
-                <div class="signup-text">
-                    <p>Don't have an account yet? <a href="/sign-up">Sign Up</a></p>
+                <div class="container-bottom">
+                    <div class="login-button">
+                        <button class="btn" id="login-button" type="button" {{on 'click' this.visibilityLogin}}>Log
+                            In</button>
+                    </div>
+                    <div class="signup-text">
+                        <p>Don't have an account yet? <a href="/sign-up">Sign Up</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        {{!-- Login forms --}}
-        <div class="form-container" data-visible="false">
-            <div class="form-popup" >
-                <form class="input-fields" {{on 'submit' this.submitUserInput}}>
-                    <h2>Login</h2>
-                    
+            {{!-- Login forms --}}
+            <div class="form-container" data-visible="false">
+                <div class="form-popup">
+                    <form class="input-fields" {{on 'submit' this.submitUserInput}}>
+                        <h2>Login</h2>
 
-                    <label for="username"></label>
-                    <input type="text" placeholder="Enter Username" id="username" name="username" required>
 
-                    <label for="psw"></label>
-                    <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+                        <label for="username"></label>
+                        <input type="text" placeholder="Enter Username" id="username" name="username" required>
 
-                    <button type="submit" class="btn login">Login</button>
-                    <button type="button" class="btn cancel" {{on 'click' this.visibilityLogin}}>Close</button>
-                </form>
+                        <label for="psw"></label>
+                        <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+
+                        <button type="submit" class="btn login">Login</button>
+                        <button type="button" class="btn cancel" {{on 'click' this.visibilityLogin}}>Close</button>
+                    </form>
+                </div>
             </div>
-        </div>
 
+        {{/if}}
     </div>
+
 </div>

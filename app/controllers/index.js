@@ -5,27 +5,22 @@ import {inject as service} from '@ember/service';
 
 export default class IndexController extends Controller {
   @tracked userInput = '';
-  @action
-  submitUserInput(event) {
-    event.preventDefault();
-    const inputUsername = event.target.querySelector('#username').value;
-    const inputPassword = event.target.querySelector('#psw').value;
-    this.checkLogin(inputUsername, inputPassword);
-  }
-
   @service auth;
 
-  async fetchData(){
-    const data = await this.myService.login('fguti', 'fgutipw');
-    console.log(data);
-  }
   @action
-  checkLogin(username, password) {
-    console.log(username, password);
-    const data =  this.auth.login('fguti', 'fgutipw');
-    console.log(data);
+  submitUserInput(event) {
+    // prevents page reloading and resetting isLoggedIn back to false
+    event.preventDefault();
+    
+    const inputUsername = event.target.querySelector('#username').value;
+    const inputPassword = event.target.querySelector('#psw').value;
 
+    // call login() from auth service to set this.auth.isLoggedIn to true if login successful
+    this.auth.isLoggedIn = this.auth.login(inputUsername, inputPassword);    
   }
+
+
+
   @action
   visibilityLogin(isVisible, formPopup, darkBg) {
     // need to declare variables here instead of using const
