@@ -4,7 +4,7 @@
         {{#if this.auth.isLoggedIn}}
             <p>Welcome, user!</p>
             {{!-- TODO: make logout function to bring back original homepage layout --}}
-            <button>Logout</button>
+            <button type="button" {{on 'click' this.auth.logout}}>Logout</button>
         {{else}}
             <div class="dark-bg"></div>
 
@@ -35,7 +35,11 @@
 
                         <label for="psw"></label>
                         <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+                        {{#if this.auth.accountNotFound}}
 
+                            <p class="error">Invalid username or password</p>
+
+                        {{/if}}
                         <button type="submit" class="btn login">Login</button>
                         <button type="button" class="btn cancel" {{on 'click' this.visibilityLogin}}>Close</button>
                     </form>

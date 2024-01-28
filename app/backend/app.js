@@ -214,9 +214,8 @@ app.get('/api/data/schedule/2', (req, res) => {
   });
 });
 
-
 app.post('/api/data/login', (req, res) => {
-  const {username, password} = req.body;
+  const { username, password } = req.body;
   console.log('received login request: ', req.body);
   const query = `
   SELECT EXISTS(
@@ -225,7 +224,7 @@ app.post('/api/data/login', (req, res) => {
     WHERE username = '${username}' AND password = '${password}'
   ) AS user_exists;
   `;
-  console.log('query: ',query)
+  console.log('query: ', query);
   connection.query(query, [username, password], (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
