@@ -3,7 +3,6 @@
     <div class="main-container">
         {{#if this.auth.isLoggedIn}}
             <p>Welcome, user!</p>
-            {{!-- TODO: make logout function to bring back original homepage layout --}}
             <button type="button" {{on 'click' this.auth.logout}}>Logout</button>
         {{else}}
             <div class="dark-bg"></div>

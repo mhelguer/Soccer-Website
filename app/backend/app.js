@@ -237,6 +237,29 @@ app.post('/api/data/login', (req, res) => {
   });
 });
 
+// TODO: make route to get all teammates' first_name's and last_name's
+app.post('/api/data/roster', (req, res) => {
+  const {playerId} = req.body;
+  console.log('received login request: ', req.body);
+  const query = `
+  SELECT EXISTS(
+    SELECT 1
+    FROM players
+    WHERE username = '${username}' AND password = '${password}'
+  ) AS user_exists;
+  `;
+  console.log('query: ', query);
+  connection.query(query, [username, password], (error, result) => {
+    if (error) {
+      console.error('Error executing MySQL query:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    } else {
+      console.log(result);
+      res.json(result);
+    }
+  });
+});
 app.listen(port, () => {
   console.log(`API server listening at http://localhost:${port}`);
 });
