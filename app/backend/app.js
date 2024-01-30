@@ -214,52 +214,50 @@ app.get('/api/data/schedule/2', (req, res) => {
   });
 });
 
+// check if user exists
 app.post('/api/data/login', (req, res) => {
   const { username, password } = req.body;
-  console.log('received login request: ', req.body);
   const query = `
-  SELECT EXISTS(
-    SELECT 1
+    SELECT player_id
     FROM players
-    WHERE username = '${username}' AND password = '${password}'
-  ) AS user_exists;
+    WHERE username = '${username}' AND password = '${password}';   
   `;
-  console.log('query: ', query);
   connection.query(query, [username, password], (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
       res.status(500).json({ error: 'Internal Server Error' });
       return;
     } else {
-      console.log(result);
-      res.json(result);
+
+      data = res.json(result);
+      return result;
     }
   });
 });
 
-// TODO: make route to get all teammates' first_name's and last_name's
+// get user's team roster
 app.post('/api/data/roster', (req, res) => {
-  const {playerId} = req.body;
-  console.log('received login request: ', req.body);
+  const player_id = req.body.player_id;
+  console.log('hi')
   const query = `
-  SELECT EXISTS(
-    SELECT 1
-    FROM players
-    WHERE username = '${username}' AND password = '${password}'
-  ) AS user_exists;
-  `;
-  console.log('query: ', query);
-  connection.query(query, [username, password], (error, result) => {
+  SELECT first_name, last_name FROM players WHERE team_id = (
+    SELECT team_id FROM teams WHERE team_id = (
+    SELECT team_id FROM players WHERE player_id = ${player_id})
+    );
+  `; 
+
+  connection.query(query, player_id, (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
       res.status(500).json({ error: 'Internal Server Error' });
       return;
-    } else {
-      console.log(result);
-      res.json(result);
+    } else {      
+      data = res.json(result);   
+      
     }
   });
 });
+
 app.listen(port, () => {
   console.log(`API server listening at http://localhost:${port}`);
 });

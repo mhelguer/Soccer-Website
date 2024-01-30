@@ -14,14 +14,16 @@ export default class IndexController extends Controller {
 
     const inputUsername = event.target.querySelector('#username').value;
     const inputPassword = event.target.querySelector('#psw').value;
-
     // call login() from auth service to set this.auth.isLoggedIn to true if login successful
+    let player_id  = this.auth.login(inputUsername, inputPassword);
 
-    this.auth.isLoggedIn = this.auth.login(inputUsername, inputPassword);
-    if (this.auth.accountNotFound == false) {
-      console.log('account not found');
+    if(this.auth.isLoggedIn == 'true'){      
+      console.log('his',player_id);
+      this.auth.getRoster(player_id);
     }
   }
+
+ 
 
   @action
   visibilityLogin(isVisible, formPopup, darkBg) {
