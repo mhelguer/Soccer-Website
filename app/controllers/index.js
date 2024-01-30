@@ -15,31 +15,37 @@ export default class IndexController extends Controller {
     const inputUsername = event.target.querySelector('#username').value;
     const inputPassword = event.target.querySelector('#psw').value;
     // call login() from auth service to set this.auth.isLoggedIn to true if login successful
-    let player_id  = this.auth.login(inputUsername, inputPassword);
+    let player_id = this.auth.login(inputUsername, inputPassword);
 
-    if(this.auth.isLoggedIn == 'true'){      
-      console.log('his',player_id);
+    if (this.auth.isLoggedIn == 'true') {
       this.auth.getRoster(player_id);
     }
   }
 
- 
-
   @action
-  visibilityLogin(isVisible, formPopup, darkBg) {
+  visibilityLogin(isVisible, formContainer, darkBg) {
     // need to declare variables here instead of using const
 
     // assign ul menu to primaryNav and use its data-visible property
-    formPopup = document.querySelector('.form-container');
-    isVisible = formPopup.getAttribute('data-visible');
+    formContainer = document.querySelector('.form-container');
+    isVisible = formContainer.getAttribute('data-visible');
     darkBg = document.querySelector('.dark-bg');
 
     if (isVisible === 'false') {
-      formPopup.setAttribute('data-visible', true);
+      formContainer.setAttribute('data-visible', true);
       darkBg.setAttribute('data-visible', true);
     } else if (isVisible === 'true') {
-      formPopup.setAttribute('data-visible', false);
+      formContainer.setAttribute('data-visible', false);
       darkBg.setAttribute('data-visible', false);
+    }
+  }
+
+  @action expandLoginContainer(expand, formContainer){
+    formContainer = document.querySelector('.form-container');
+    expand = formContainer.getAttribute('expand');
+
+    if(expand === 'false'){
+      formContainer.setAttribute('expand', true);
     }
   }
 }
