@@ -2,13 +2,9 @@
 
     <div class="main-container">
         {{#if this.auth.isLoggedIn}}
-            <p>Welcome, user!</p>
-            {{#if this.auth.player_id}}
-                {{this.auth.player_id}}
-            {{/if}}
-            {{#if this.auth.roster}}
-                hi
-            {{/if}}
+            <h1 class="welcome">Welcome, {{this.auth.player.first_name}} {{this.auth.player.last_name}}!</h1>
+            <h2>{{this.auth.player.name}}</h2>
+
             {{#if this.auth.roster}}
                 <ul>
                     {{#each this.auth.roster as |player|}}
@@ -18,16 +14,16 @@
                     {{/each}}
                 </ul>
 
-            {{else}}
                 <button type="button" {{on 'click' this.auth.getRoster}}>Roster</button>
             {{/if}}
-            <button type="button" {{on 'click' this.auth.logout}}>Logout</button>
+            <button type="button" class="btn cancel" {{on 'click' this.auth.logout}}>Logout</button>
         {{else}}
             <div class="dark-bg"></div>
+                {{this.auth.accountNotFound}}
 
             <div class="container">
                 <div class="container-top">
-                    <p>Before manage roster you need to be logged in.</p>
+                    <p>Before managing roster you need to be logged in.</p>
                 </div>
                 <div class="container-bottom">
                     <div class="login-button">
@@ -41,7 +37,7 @@
             </div>
 
             {{!-- Login forms --}}
-            <div class="form-container" data-visible="false">
+            <div class="form-container" data-visible="false" expand="false">
                 <div class="form-popup">
                     <form class="input-fields" {{on 'submit' this.submitUserInput}}>
                         <h2>Login</h2>
@@ -53,7 +49,7 @@
                         <label for="psw"></label>
                         <input type="password" placeholder="Enter Password" id="psw" name="password" required>
                         {{#if this.auth.accountNotFound}}
-
+                            {{this.expandLoginContainer}}
                             <p class="error">Invalid username or password</p>
 
                         {{/if}}

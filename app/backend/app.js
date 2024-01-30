@@ -217,18 +217,20 @@ app.get('/api/data/schedule/2', (req, res) => {
 // check if user exists
 app.post('/api/data/login', (req, res) => {
   const { username, password } = req.body;
+  //TODO: get all player stats
   const query = `
-    SELECT player_id
-    FROM players
-    WHERE username = '${username}' AND password = '${password}';   
+  SELECT p.player_id, p.first_name, p.last_name, t.name
+  FROM teams t 
+  JOIN players p  ON t.team_id = p.team_id
+  WHERE p.username = '${username}' AND p.password = '${password}'; 
   `;
+
   connection.query(query, [username, password], (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
       res.status(500).json({ error: 'Internal Server Error' });
       return;
     } else {
-
       data = res.json(result);
       return result;
     }
@@ -236,24 +238,24 @@ app.post('/api/data/login', (req, res) => {
 });
 
 // get user's team roster
+//TODO: get team name too
 app.post('/api/data/roster', (req, res) => {
   const player_id = req.body.player_id;
-  console.log('hi')
+  console.log('hi');
   const query = `
   SELECT first_name, last_name FROM players WHERE team_id = (
     SELECT team_id FROM teams WHERE team_id = (
     SELECT team_id FROM players WHERE player_id = ${player_id})
     );
-  `; 
+  `;
 
   connection.query(query, player_id, (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
       res.status(500).json({ error: 'Internal Server Error' });
       return;
-    } else {      
-      data = res.json(result);   
-      
+    } else {
+      data = res.json(result);
     }
   });
 });
