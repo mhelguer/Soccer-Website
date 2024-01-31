@@ -5,7 +5,8 @@ import ENV from 'ember-quickstart/config/environment';
 export default class AuthService extends Service {
   // using localStorage prevents user from being logged out when refreshing page
   @tracked isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
-  @tracked accountNotFound = sessionStorage.getItem('accountNotFound') === 'true';
+  @tracked accountNotFound =
+    sessionStorage.getItem('accountNotFound') === 'true';
   @tracked roster = sessionStorage.getItem('roster')
     ? JSON.parse(sessionStorage.getItem('roster'))
     : [];
@@ -29,13 +30,12 @@ export default class AuthService extends Service {
         .then((response) => response.json())
         .then((newData) => {
           if (newData[0]) {
-            this.player = newData[0]; // {player_id, first_name, last_name, name(team name)}
-            sessionStorage.setItem('player', JSON.stringify(this.player));
-
-            this.getRoster(this.player.player_id);
-
             this.isLoggedIn = true;
             sessionStorage.setItem('isLoggedIn', 'true');
+
+            this.player = [newData[0]]; // {player_id, first_name, last_name, name(team name)}
+            sessionStorage.setItem('player', JSON.stringify(this.player));
+            //this.getRoster(this.player.player_id);
 
             this.accountNotFound = false;
             sessionStorage.setItem('accountNotFound', 'false');
@@ -46,8 +46,8 @@ export default class AuthService extends Service {
             this.accountNotFound = true;
             sessionStorage.setItem('accountNotFound', 'true');
 
-            this.player_id = 0;
-            sessionStorage.setItem('player_id', 0);
+            // this.player_id = 0;
+            // sessionStorage.setItem('player_id', 0);
 
             this.roster = null;
             sessionStorage.setItem('roster', null);
@@ -59,7 +59,7 @@ export default class AuthService extends Service {
   }
 
   async getRoster(player_id) {
-    console.log('getRoster player_id:', player_id);
+    console.log('in getRoster');
     const url = `${ENV.APP.host}/api/data/roster?playerId=${player_id}`;
 
     try {
@@ -90,8 +90,8 @@ export default class AuthService extends Service {
     sessionStorage.setItem('isLoggedIn', 'false');
     this.roster = null;
     sessionStorage.setItem('roster', null);
-    this.player_id = null;
-    sessionStorage.setItem('player_id', null);
+    this.player = [];
+    sessionStorage.setItem('player', []);
     this.accountNotFound = false;
     sessionStorage.setItem('accountNotFound', false);
   };
