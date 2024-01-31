@@ -1,26 +1,19 @@
 <div class="main">
 
     <div class="main-container">
-        {{#if this.auth.isLoggedIn}}
-            <h1 class="welcome">Welcome, {{this.auth.player.first_name}} {{this.auth.player.last_name}}!</h1>
-            <h2>{{this.auth.player.name}}</h2>
+        {{!-- if logged in --}}
+        {{#if this.auth.isLoggedIn}}   
+            {{#each this.auth.player as |player|}}
+                <h1 class="welcome">Welcome, {{player.first_name}} {{player.last_name}}!</h1>
+                <h2>{{player.name}}</h2>
+            {{/each}}
+            {{!-- Stats table component --}}
+            <StatsTable @title="Your Spring 2024 Stats" @player={{this.auth.player}} />
 
-            {{#if this.auth.roster}}
-                <ul>
-                    {{#each this.auth.roster as |player|}}
-                        <li>
-                            {{player.first_name}} {{player.last_name}}
-                        </li>
-                    {{/each}}
-                </ul>
-
-                <button type="button" {{on 'click' this.auth.getRoster}}>Roster</button>
-            {{/if}}
             <button type="button" class="btn cancel" {{on 'click' this.auth.logout}}>Logout</button>
         {{else}}
+            {{!-- if not logged in --}}
             <div class="dark-bg"></div>
-                {{this.auth.accountNotFound}}
-
             <div class="container">
                 <div class="container-top">
                     <p>Before managing roster you need to be logged in.</p>

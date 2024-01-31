@@ -2,10 +2,11 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import ENV from 'ember-quickstart/config/environment';
 
 export default class IndexController extends Controller {
-  @tracked userInput = '';
   @service auth;
+
 
   @action
   submitUserInput(event) {
@@ -14,11 +15,11 @@ export default class IndexController extends Controller {
 
     const inputUsername = event.target.querySelector('#username').value;
     const inputPassword = event.target.querySelector('#psw').value;
-    // call login() from auth service to set this.auth.isLoggedIn to true if login successful
-    let player_id = this.auth.login(inputUsername, inputPassword);
 
-    if (this.auth.isLoggedIn == 'true') {
-      this.auth.getRoster(player_id);
+    this.auth.login(inputUsername, inputPassword);
+
+    if (sessionStorage.getItem('isLoggedIn') == 'true') {
+      //this.auth.getRoster(player_id);
     }
   }
 
@@ -40,11 +41,11 @@ export default class IndexController extends Controller {
     }
   }
 
-  @action expandLoginContainer(expand, formContainer){
+  @action expandLoginContainer(expand, formContainer) {
     formContainer = document.querySelector('.form-container');
     expand = formContainer.getAttribute('expand');
 
-    if(expand === 'false'){
+    if (expand === 'false') {
       formContainer.setAttribute('expand', true);
     }
   }
