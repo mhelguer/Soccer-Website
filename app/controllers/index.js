@@ -6,7 +6,7 @@ import ENV from 'ember-quickstart/config/environment';
 
 export default class IndexController extends Controller {
   @service auth;
-
+  @service router;
 
   @action
   submitUserInput(event) {
@@ -48,5 +48,9 @@ export default class IndexController extends Controller {
     if (expand === 'false') {
       formContainer.setAttribute('expand', true);
     }
+  }
+
+  @action transitionToRoster(){
+    this.router.transitionTo('roster');
   }
 }

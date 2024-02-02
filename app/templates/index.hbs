@@ -2,15 +2,18 @@
 
     <div class="main-container">
         {{!-- if logged in --}}
-        {{#if this.auth.isLoggedIn}}   
+        {{#if this.auth.isLoggedIn}}
+            {{log this.auth.player}}
+
             {{#each this.auth.player as |player|}}
                 <h1 class="welcome">Welcome, {{player.first_name}} {{player.last_name}}!</h1>
-                <h2>{{player.name}}</h2>
             {{/each}}
-            {{!-- Stats table component --}}
-            <StatsTable @title="Your Spring 2024 Stats" @player={{this.auth.player}} />
 
-            <button type="button" class="btn cancel" {{on 'click' this.auth.logout}}>Logout</button>
+            <button type="button" class = 'btn roster' {{on 'click' this.transitionToRoster}}>View Roster</button>
+                {{!-- Stats table component --}}
+                <StatsTable @title="Your Spring 2024 Stats" @player={{this.auth.player}} />
+
+                <button type="button" class="btn cancel" {{on 'click' this.auth.logout}}>Logout</button>
         {{else}}
             {{!-- if not logged in --}}
             <div class="dark-bg"></div>
