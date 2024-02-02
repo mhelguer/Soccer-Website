@@ -1,0 +1,67 @@
+.roster{
+  background-color: gray !important;
+  color: white;
+  font-weight: 800;  
+  margin-block: 0.5rem;
+}
+
+
+
+/*/////////////////////////////////////////////////////////////////////////////////
+ table 
+*/
+.header{
+    text-align: center !important;
+    justify-content: center;
+    
+}
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    table-layout: fixed;
+    border-spacing: 0;
+    margin: 0;
+    font-size: 20px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  .stats-table th,
+  td {
+    white-space: normal;
+    padding: 20px 10px;
+    overflow: hidden;
+    text-align: center !important;
+
+  }
+  .stats-table tr {
+    border: 2px solid gray;
+  }
+  
+  /*/////////////////////////////////////////////////////////////////////////////////
+   table head row
+  */
+  .stats-table-body tr td{
+    text-align: center !important;
+    width: 14px;
+
+  }
+  .stats-table-head {
+    display: table-header-group;
+    vertical-align: middle;
+    font-style: none;
+  }
+  
+  .stats-table-head th {
+    font-weight: normal !important;
+  }
+  
+  /*/////////////////////////////////////////////////////////////////////////////////
+   table body
+  */
+  .stats-table-body {
+    font-weight: bold;
+    background-color: rgb(216, 229, 23);
+  }
+  
+  

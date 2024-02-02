@@ -1,37 +1,28 @@
 <div class="main">
     <div class="standings">
         <div class="header">
-            <div class="table-title">
-                <h2>{{@title}}</h2>
-            </div>
+            <h2>{{@title}}</h2>
         </div>
-        {{#if @player}}
-            {{@player.name}}
-        {{else}}
-            no
-        {{/if}}
-        <table class="teams-table">
-            <thead class="teams-table-head">
+        {{log @player}}
+        <table class="stats-table">
+            <thead class="stats-table-head">
                 <tr>
                     {{!-- @player is object that has attributes, to use #each need the object in an array [{..}] --}}
                     {{#each @player as |stat|}}
-                        <th>{{stat}}</th>
+                        <th>Name</th>
+                        <th>Date of Birth</th>
+                        <th>Team Name</th>
+                        <th>Goals</th>
                     {{/each}}
                 </tr>
             </thead>
-            <tbody class="teams-table-body">
-                {{#each this.data.data as |team|}}
+            <tbody class="stats-table-body">
+                {{#each @player as |player|}}
                     <tr>
-                        <td>{{team.rank}}</td>
-                        <td>{{team.name}}</td>
-                        <td>{{team.games_played}}</td>
-                        <td>{{team.wins}}</td>
-                        <td>{{team.draws}}</td>
-                        <td>{{team.losses}}</td>
-                        <td>{{team.goals_scored}}</td>
-                        <td>{{team.goals_conceded}}</td>
-                        <td>{{team.goal_differential}}</td>
-                        <td>{{team.points}}</td>
+                        <td>{{player.first_name}} {{player.last_name}}</td>
+                        <td>{{player.birth_date}}</td>
+                        <td>{{player.name}}</td>
+                        <td>{{player.goals}}</td>
                     </tr>
                 {{/each}}
             </tbody>

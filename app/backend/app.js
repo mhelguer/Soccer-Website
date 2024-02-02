@@ -219,7 +219,7 @@ app.post('/api/data/login', (req, res) => {
   const { username, password } = req.body;
   //TODO: get all player stats
   const query = `
-  SELECT p.player_id, p.first_name, p.last_name, t.name
+  SELECT p.player_id, p.first_name, p.last_name, DATE(p.birth_date) AS birth_date, p.goals, t.name
   FROM teams t 
   JOIN players p  ON t.team_id = p.team_id
   WHERE p.username = '${username}' AND p.password = '${password}'; 
@@ -238,10 +238,8 @@ app.post('/api/data/login', (req, res) => {
 });
 
 // get user's team roster
-//TODO: get team name too
 app.post('/api/data/roster', (req, res) => {
   const player_id = req.body.player_id;
-  console.log('hi');
   const query = `
   SELECT first_name, last_name FROM players WHERE team_id = (
     SELECT team_id FROM teams WHERE team_id = (
