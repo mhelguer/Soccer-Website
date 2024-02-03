@@ -3,7 +3,6 @@
     <div class="main-container">
         {{!-- if logged in --}}
         {{#if this.auth.isLoggedIn}}
-            {{log this.auth.player}}
 
             {{#each this.auth.player as |player|}}
                 <h1 class="welcome">Welcome, {{player.first_name}} {{player.last_name}}!</h1>
