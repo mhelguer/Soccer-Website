@@ -217,7 +217,6 @@ app.get('/api/data/schedule/2', (req, res) => {
 // check if user exists
 app.post('/api/data/login', (req, res) => {
   const { username, password } = req.body;
-  //TODO: get all player stats
   const query = `
   SELECT p.player_id, p.first_name, p.last_name, DATE(p.birth_date) AS birth_date, p.goals, t.name
   FROM teams t 
@@ -239,6 +238,7 @@ app.post('/api/data/login', (req, res) => {
 
 // get user's team roster
 app.post('/api/data/roster', (req, res) => {
+  console.log('in roster');
   const player_id = req.body.player_id;
   const query = `
   SELECT first_name, last_name FROM players WHERE team_id = (
@@ -246,7 +246,7 @@ app.post('/api/data/roster', (req, res) => {
     SELECT team_id FROM players WHERE player_id = ${player_id})
     );
   `;
-
+  console.log('roster query: ', query);
   connection.query(query, player_id, (error, result) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
@@ -254,6 +254,7 @@ app.post('/api/data/roster', (req, res) => {
       return;
     } else {
       data = res.json(result);
+      return data;
     }
   });
 });

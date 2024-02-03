@@ -60,7 +60,9 @@ export default class AuthService extends Service {
 
   async getRoster(player_id) {
     console.log('in getRoster');
-    const url = `${ENV.APP.host}/api/data/roster?playerId=${player_id}`;
+    console.log('this.auth.player: ', this.player)
+    const url = `${ENV.APP.host}/api/data/roster?player_id=${player_id}`;
+    console.log('this.auth url: ', url);
 
     try {
       const response = await fetch(url, {
