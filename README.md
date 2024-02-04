@@ -1,7 +1,8 @@
 # ember-quickstart
 
 This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This application is a mock website for a soccer league where users can view the league's schedule, team standings for multiple divisions, and login to view their team's roster.
+The backend uses MySQL and NodeJS and the frontend uses EmberJS and SCSS.
 
 ## Prerequisites
 
