@@ -17,6 +17,7 @@
             </thead>
             <tbody class="stats-table-body">
                 {{#each @roster.data as |player|}}
+                {{log player}}
                     <tr>
                         <td>{{player.first_name}} {{player.last_name}}</td>
                         <td>{{player.birth_date}}</td>

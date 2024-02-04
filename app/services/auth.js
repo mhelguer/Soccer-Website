@@ -35,7 +35,6 @@ export default class AuthService extends Service {
 
             this.player = [newData[0]]; // {player_id, first_name, last_name, name(team name)}
             sessionStorage.setItem('player', JSON.stringify(this.player));
-            //this.getRoster(this.player.player_id);
 
             this.accountNotFound = false;
             sessionStorage.setItem('accountNotFound', 'false');
@@ -45,9 +44,6 @@ export default class AuthService extends Service {
 
             this.accountNotFound = true;
             sessionStorage.setItem('accountNotFound', 'true');
-
-            // this.player_id = 0;
-            // sessionStorage.setItem('player_id', 0);
 
             this.roster = null;
             sessionStorage.setItem('roster', null);

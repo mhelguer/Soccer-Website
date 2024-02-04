@@ -8,11 +8,11 @@
                 <h1 class="welcome">Welcome, {{player.first_name}} {{player.last_name}}!</h1>
             {{/each}}
 
-            <button type="button" class = 'btn roster' {{on 'click' this.transitionToRoster}}>View Roster</button>
-                {{!-- Stats table component --}}
-                <StatsTable @title="Your Spring 2024 Stats" @player={{this.auth.player}} />
+            <button type="button" class='btn roster' {{on 'click' this.transitionToRoster}}>View Roster</button>
+            {{!-- Stats table component --}}
+            <StatsTable @title="Your Spring 2024 Stats" @player={{this.auth.player}} />
 
-                <button type="button" class="btn cancel" {{on 'click' this.auth.logout}}>Logout</button>
+            <button type="button" class="btn cancel" {{on 'click' this.auth.logout}}>Logout</button>
         {{else}}
             {{!-- if not logged in --}}
             <div class="dark-bg"></div>
@@ -25,9 +25,9 @@
                         <button class="btn" id="login-button" type="button" {{on 'click' this.visibilityLogin}}>Log
                             In</button>
                     </div>
-                    <div class="signup-text">
+                    {{!-- <div class="signup-text">
                         <p>Don't have an account yet? <a href="/sign-up">Sign Up</a></p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

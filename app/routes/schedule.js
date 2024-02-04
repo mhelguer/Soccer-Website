@@ -51,7 +51,6 @@ export default class ScheduleRoute extends Route {
         }
       }
     }
-    console.log('schedule.js this.all_gamedays:', this.all_gamedays);
     return this.all_gamedays;
   }
 }

@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 const config = require('./config');
 
-//app.use(cors());
 app.use(cors());
 app.use(express.json());
 
@@ -241,7 +240,7 @@ app.post('/api/data/roster', (req, res) => {
   console.log('in roster');
   const player_id = req.body.player_id;
   const query = `
-  SELECT p.first_name, p.last_name, p.goals, t.name
+  SELECT p.first_name, p.last_name, DATE_FORMAT(p.birth_date, '%m-%d-%Y') AS birth_date, p.goals, t.name
 FROM players p
 JOIN teams t ON p.team_id = t.team_id
 WHERE p.team_id = (SELECT team_id FROM players WHERE player_id = ${player_id})
