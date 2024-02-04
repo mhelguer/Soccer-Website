@@ -9,7 +9,6 @@ export default class TeamsTableComponent extends Component {
 
   @tracked data = this.data;
   // get all unique dates to have a date header for each gameday container
-
   constructor() {
     super(...arguments);
 
@@ -17,7 +16,6 @@ export default class TeamsTableComponent extends Component {
   }
   @action
   changeScheduleData(division) {
-    console.log(division, 'changeScheduleData');
     fetch(`http://localhost:3000/api/data/schedule/${division}`)
       .then((response) => response.json())
       .then((newData) => {

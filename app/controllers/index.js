@@ -19,7 +19,6 @@ export default class IndexController extends Controller {
     this.auth.login(inputUsername, inputPassword);
 
     if (sessionStorage.getItem('isLoggedIn') == 'true') {
-      //this.auth.getRoster(player_id);
     }
   }
 
@@ -52,7 +51,5 @@ export default class IndexController extends Controller {
 
   @action transitionToRoster() {
     this.router.transitionTo('roster');
-    console.log('transition isLoggedIn: ', sessionStorage.getItem('isLoggedIn'));
-    //this.auth.getRoster(this.auth.player[0].player_id)
   }
 }

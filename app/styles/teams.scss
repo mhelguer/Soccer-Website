@@ -53,14 +53,13 @@ td {
 /*/////////////////////////////////////////////////////////////////////////////////
  table head row
 */
-.teams-table-head th:not(:nth-child(2)) {
+.teams-table-head th{
   text-align: center !important;
   width: 14px;
 }
 
 
 .teams-table-head tr th:nth-child(2) {
-  text-align: left !important;
   width: 130px;
 }
 
