@@ -52,7 +52,7 @@ export default class IndexController extends Controller {
 
   @action transitionToRoster() {
     this.router.transitionTo('roster');
-    console.log(' this.auth.player[0].player_id index controller: ',this.auth.player[0].player_id)
+    console.log('transition isLoggedIn: ', sessionStorage.getItem('isLoggedIn'));
     //this.auth.getRoster(this.auth.player[0].player_id)
   }
 }

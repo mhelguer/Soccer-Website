@@ -1,27 +1,25 @@
 <div class="main">
     <div class="standings">
+        <button type="button" class='btn roster' {{on 'click' this.transitionToIndex}}>Home</button>
+
         <div class="header">
-            <h2>{{@title}}</h2>
+            <h2>{{@title}} 2024 Roster</h2>
         </div>
-        {{log @player}}
+
         <table class="stats-table">
             <thead class="stats-table-head">
                 <tr>
                     {{!-- @player is object that has attributes, to use #each need the object in an array [{..}] --}}
-                    {{#each @player as |stat|}}
-                        <th>Name</th>
-                        <th>Date of Birth</th>
-                        <th>Team Name</th>
-                        <th>Goals</th>
-                    {{/each}}
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Goals</th>
                 </tr>
             </thead>
             <tbody class="stats-table-body">
-                {{#each @player as |player|}}
+                {{#each @roster.data as |player|}}
                     <tr>
                         <td>{{player.first_name}} {{player.last_name}}</td>
                         <td>{{player.birth_date}}</td>
-                        <td>{{player.name}}</td>
                         <td>{{player.goals}}</td>
                     </tr>
                 {{/each}}
