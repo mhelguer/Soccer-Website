@@ -10,6 +10,11 @@
 /*/////////////////////////////////////////////////////////////////////////////////
  table 
 */
+.stats-container{
+  height: 100%;
+  top: auto;
+  position: relative;
+}
 .header{
     text-align: center !important;
     justify-content: center;

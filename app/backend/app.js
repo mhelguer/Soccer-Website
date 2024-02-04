@@ -218,7 +218,7 @@ app.get('/api/data/schedule/2', (req, res) => {
 app.post('/api/data/login', (req, res) => {
   const { username, password } = req.body;
   const query = `
-  SELECT p.player_id, p.first_name, p.last_name, DATE(p.birth_date) AS birth_date, p.goals, t.name
+  SELECT p.player_id, p.first_name, p.last_name, DATE_FORMAT(birth_date, '%m-%d-%Y') AS birth_date, p.goals, t.name
   FROM teams t 
   JOIN players p  ON t.team_id = p.team_id
   WHERE p.username = '${username}' AND p.password = '${password}'; 
@@ -241,10 +241,11 @@ app.post('/api/data/roster', (req, res) => {
   console.log('in roster');
   const player_id = req.body.player_id;
   const query = `
-  SELECT first_name, last_name FROM players WHERE team_id = (
-    SELECT team_id FROM teams WHERE team_id = (
-    SELECT team_id FROM players WHERE player_id = ${player_id})
-    );
+  SELECT p.first_name, p.last_name, p.goals, t.name
+FROM players p
+JOIN teams t ON p.team_id = t.team_id
+WHERE p.team_id = (SELECT team_id FROM players WHERE player_id = ${player_id})
+ORDER BY p.last_name;
   `;
   console.log('roster query: ', query);
   connection.query(query, player_id, (error, result) => {
@@ -253,8 +254,17 @@ app.post('/api/data/roster', (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
       return;
     } else {
-      data = res.json(result);
-      return data;
+      const resourceCollection = result.map((roster) => ({
+        type: 'roster',
+        first_name: roster.first_name,
+        last_name: roster.last_name,
+        birth_date: roster.birth_date,
+        goals: roster.goals,
+        name: roster.name,
+      }));
+
+      res.json({ data: resourceCollection });
+      console.log('resourceCollection: ', resourceCollection);
     }
   });
 });
