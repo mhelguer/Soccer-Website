@@ -45,7 +45,9 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+Run `npm install` and start your mysql server on port 3000. Use the terminal in Visual Studio Code to navigate to `ember-quickstart` to be able to use the `ember s` command to run the application.
+Use another terminal tab to navigate to `ember-quickstart/app/backend` to run `node app.js` so that the application will connect to your mysql server.
+In your browser, go to `http://localhost:4200/` to view the home page of the website.
 
 ## Further Reading / Useful Links
 
